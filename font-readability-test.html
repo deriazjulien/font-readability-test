@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Lisibilité - Comparaison de Polices</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Atkinson Hyperlegible Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <!-- Figtree Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Nikkei Journal PP Font Face Definitions */
+        @font-face {
+            font-family: 'Nikkei Journal PP';
+            src: url('Font Nikkei journal PP/PPNikkeiJournal-Light.otf') format('opentype');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Nikkei Journal PP';
+            src: url('Font Nikkei journal PP/PPNikkeiJournal-LightItalic.otf') format('opentype');
+            font-weight: 300;
+            font-style: italic;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Nikkei Journal PP';
+            src: url('Font Nikkei journal PP/PPNikkeiJournal-Regular.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Nikkei Journal PP';
+            src: url('Font Nikkei journal PP/PPNikkeiJournal-RegularItalic.otf') format('opentype');
+            font-weight: 400;
+            font-style: italic;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Nikkei Journal PP';
+            src: url('Font Nikkei journal PP/PPNikkeiJournal-Ultrabold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Nikkei Journal PP';
+            src: url('Font Nikkei journal PP/PPNikkeiJournal-UltraboldItalic.otf') format('opentype');
+            font-weight: 700;
+            font-style: italic;
+            font-display: swap;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f5f5f5;
+            color: #222;
+            line-height: 1.6;
+            padding: 20px;
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 2em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        .instructions {
+            background: #e8f4fd;
+            border-left: 4px solid #2196F3;
+            padding: 20px;
+            margin-bottom: 40px;
+            border-radius: 5px;
+        }
+
+        .instructions h2 {
+            color: #1976D2;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+        }
+
+        .instructions li {
+            margin: 8px 0;
+        }
+
+        .test-section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background: #fafafa;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .test-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .test-title {
+            font-size: 1.4em;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .font-toggle {
+            display: flex;
+            gap: 10px;
+            background: white;
+            padding: 5px;
+            border-radius: 25px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .font-toggle button {
+            padding: 10px 20px;
+            border: none;
+            background: transparent;
+            color: #666;
+            cursor: pointer;
+            border-radius: 20px;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .font-toggle button.active {
+            background: #2196F3;
+            color: white;
+        }
+
+        .font-toggle button:hover:not(.active) {
+            background: #f0f0f0;
+        }
+
+        .comparison-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .font-sample {
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .font-sample:hover {
+            border-color: #2196F3;
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.15);
+        }
+
+        .font-label {
+            font-weight: bold;
+            color: #2196F3;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8f4fd;
+        }
+
+        .font-a {
+            font-family: 'Atkinson Hyperlegible', sans-serif;
+        }
+
+        .font-b {
+            font-family: 'Nikkei Journal PP', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .font-c {
+            font-family: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .sample-text {
+            margin: 20px 0;
+            line-height: 1.8;
+        }
+
+        .character-test {
+            font-size: 1.3em;
+            letter-spacing: 0.1em;
+            margin: 15px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .button-test {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #2196F3;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 0;
+            transition: background 0.3s ease;
+        }
+
+        .button-test:hover {
+            background: #1976D2;
+        }
+
+        .feedback-section {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            padding: 30px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .feedback-section h2 {
+            color: #856404;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .rating-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .rating-buttons button {
+            padding: 12px 25px;
+            border: 2px solid #ffc107;
+            background: white;
+            color: #856404;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .rating-buttons button:hover {
+            background: #ffc107;
+            color: white;
+        }
+
+        .preference-counter {
+            margin-top: 30px;
+            padding: 20px;
+            background: #e8f4fd;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .preference-counter.show {
+            display: block;
+        }
+
+        .counter-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .counter-item {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+        }
+
+        .counter-label {
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .counter-value {
+            font-size: 2em;
+            color: #2196F3;
+            font-weight: bold;
+        }
+
+        .info-note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-style: italic;
+            color: #856404;
+        }
+
+        @media (max-width: 1200px) {
+            .comparison-container {
+                grid-template-columns: 1fr;
+            }
+
+            .counter-grid {
+                grid-template-columns: 1fr !important;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .font-toggle {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .test-header {
+                flex-direction: column;
+            }
+
+            .rating-buttons {
+                flex-direction: column;
+            }
+
+            .rating-buttons button {
+                width: 100%;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Styles pour le mode alternance */
+        .comparison-container.single-view {
+            grid-template-columns: 1fr;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .comparison-container.single-view .font-sample {
+            display: none;
+        }
+
+        .comparison-container.single-view .font-sample.active-font {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Amélioration de l'accessibilité */
+        :focus {
+            outline: 3px solid #2196F3;
+            outline-offset: 2px;
+        }
+
+        button:focus {
+            outline-offset: 0;
+        }
+
+        /* Animation de changement */
+        .font-sample {
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Test de Lisibilité des Polices</h1>
+        <p class="subtitle">Comparaison pour l'accessibilité et le confort de lecture</p>
+
+        <div class="instructions">
+            <h2>📋 Instructions</h2>
+            <ol>
+                <li>Parcourez les différents tests ci-dessous</li>
+                <li>Comparez les trois polices côte à côte ou utilisez le bouton pour alterner</li>
+                <li>Notez quelle police vous semble la plus lisible pour chaque test</li>
+                <li>Donnez votre avis global à la fin</li>
+            </ol>
+            <p style="margin-top: 15px; font-style: italic; color: #666;">
+                Note : Les polices sont volontairement anonymisées pour éviter tout biais dans votre évaluation.
+            </p>
+            <p style="margin-top: 10px; font-size: 0.9em; color: #666;">
+                💡 <strong>Modes d'affichage :</strong> "Comparer" affiche les 3 polices côte à côte.
+                "Alterner" affiche une police à la fois qui change automatiquement toutes les 5 secondes.
+            </p>
+        </div>
+
+
+        <!-- Test 1: Paragraphe de texte -->
+        <div class="test-section">
+            <div class="test-header">
+                <h3 class="test-title">Test 1: Lecture de paragraphe</h3>
+                <div class="font-toggle">
+                    <button class="toggle-btn" data-view="compare" onclick="toggleView(this)">Comparer</button>
+                    <button class="toggle-btn" data-view="alternate" onclick="toggleView(this)">Alterner</button>
+                </div>
+            </div>
+
+            <div class="comparison-container" id="test1">
+                <div class="font-sample font-a" data-font="a">
+                    <div class="font-label">Police A</div>
+                    <p class="sample-text">
+                        Les interfaces numériques doivent être accessibles à tous. Une police lisible
+                        améliore l'expérience utilisateur, réduit la fatigue visuelle et permet une
+                        meilleure compréhension du contenu. C'est particulièrement important pour les
+                        personnes dyslexiques ou ayant des difficultés de lecture.
+                    </p>
+                    <p class="sample-text">
+                        Voici un exemple avec des chiffres : 1234567890. Et quelques caractères
+                        spéciaux : @#$%&*()_+-={}[]|:";'<>?,./
+                    </p>
+                </div>
+
+                <div class="font-sample font-b" data-font="b">
+                    <div class="font-label">Police B</div>
+                    <p class="sample-text">
+                        Les interfaces numériques doivent être accessibles à tous. Une police lisible
+                        améliore l'expérience utilisateur, réduit la fatigue visuelle et permet une
+                        meilleure compréhension du contenu. C'est particulièrement important pour les
+                        personnes dyslexiques ou ayant des difficultés de lecture.
+                    </p>
+                    <p class="sample-text">
+                        Voici un exemple avec des chiffres : 1234567890. Et quelques caractères
+                        spéciaux : @#$%&*()_+-={}[]|:";'<>?,./
+                    </p>
+                </div>
+
+                <div class="font-sample font-c" data-font="c">
+                    <div class="font-label">Police C</div>
+                    <p class="sample-text">
+                        Les interfaces numériques doivent être accessibles à tous. Une police lisible
+                        améliore l'expérience utilisateur, réduit la fatigue visuelle et permet une
+                        meilleure compréhension du contenu. C'est particulièrement important pour les
+                        personnes dyslexiques ou ayant des difficultés de lecture.
+                    </p>
+                    <p class="sample-text">
+                        Voici un exemple avec des chiffres : 1234567890. Et quelques caractères
+                        spéciaux : @#$%&*()_+-={}[]|:";'<>?,./
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Test 2: Distinction des caractères -->
+        <div class="test-section">
+            <div class="test-header">
+                <h3 class="test-title">Test 2: Distinction des caractères similaires</h3>
+                <div class="font-toggle">
+                    <button class="toggle-btn" data-view="compare" onclick="toggleView(this)">Comparer</button>
+                    <button class="toggle-btn" data-view="alternate" onclick="toggleView(this)">Alterner</button>
+                </div>
+            </div>
+
+            <div class="comparison-container" id="test2">
+                <div class="font-sample font-a" data-font="a">
+                    <div class="font-label">Police A</div>
+                    <div class="character-test">Il1 | O0 | 6b9 | dp</div>
+                    <div class="character-test">rn m | vv w | cl d</div>
+                    <div class="character-test">S5 | B8 | Z2 | G6</div>
+                </div>
+
+                <div class="font-sample font-b" data-font="b">
+                    <div class="font-label">Police B</div>
+                    <div class="character-test">Il1 | O0 | 6b9 | dp</div>
+                    <div class="character-test">rn m | vv w | cl d</div>
+                    <div class="character-test">S5 | B8 | Z2 | G6</div>
+                </div>
+
+                <div class="font-sample font-c" data-font="c">
+                    <div class="font-label">Police C</div>
+                    <div class="character-test">Il1 | O0 | 6b9 | dp</div>
+                    <div class="character-test">rn m | vv w | cl d</div>
+                    <div class="character-test">S5 | B8 | Z2 | G6</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Test 3: Différentes tailles -->
+        <div class="test-section">
+            <div class="test-header">
+                <h3 class="test-title">Test 3: Différentes tailles de texte</h3>
+                <div class="font-toggle">
+                    <button class="toggle-btn" data-view="compare" onclick="toggleView(this)">Comparer</button>
+                    <button class="toggle-btn" data-view="alternate" onclick="toggleView(this)">Alterner</button>
+                </div>
+            </div>
+
+            <div class="comparison-container" id="test3">
+                <div class="font-sample font-a" data-font="a">
+                    <div class="font-label">Police A</div>
+                    <h2 style="font-size: 2em; margin: 20px 0;">Titre principal</h2>
+                    <h3 style="font-size: 1.5em; margin: 15px 0;">Sous-titre important</h3>
+                    <p style="font-size: 1em; margin: 10px 0;">Texte de paragraphe normal pour la lecture.</p>
+                    <p style="font-size: 0.85em; margin: 10px 0; color: #666;">Petit texte pour les mentions légales ou notes.</p>
+                    <a href="#" class="button-test">Bouton d'action</a>
+                </div>
+
+                <div class="font-sample font-b" data-font="b">
+                    <div class="font-label">Police B</div>
+                    <h2 style="font-size: 2em; margin: 20px 0;">Titre principal</h2>
+                    <h3 style="font-size: 1.5em; margin: 15px 0;">Sous-titre important</h3>
+                    <p style="font-size: 1em; margin: 10px 0;">Texte de paragraphe normal pour la lecture.</p>
+                    <p style="font-size: 0.85em; margin: 10px 0; color: #666;">Petit texte pour les mentions légales ou notes.</p>
+                    <a href="#" class="button-test">Bouton d'action</a>
+                </div>
+
+                <div class="font-sample font-c" data-font="c">
+                    <div class="font-label">Police C</div>
+                    <h2 style="font-size: 2em; margin: 20px 0;">Titre principal</h2>
+                    <h3 style="font-size: 1.5em; margin: 15px 0;">Sous-titre important</h3>
+                    <p style="font-size: 1em; margin: 10px 0;">Texte de paragraphe normal pour la lecture.</p>
+                    <p style="font-size: 0.85em; margin: 10px 0; color: #666;">Petit texte pour les mentions légales ou notes.</p>
+                    <a href="#" class="button-test">Bouton d'action</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Test 4: Texte long -->
+        <div class="test-section">
+            <div class="test-header">
+                <h3 class="test-title">Test 4: Lecture prolongée (fatigue visuelle)</h3>
+                <div class="font-toggle">
+                    <button class="toggle-btn" data-view="compare" onclick="toggleView(this)">Comparer</button>
+                    <button class="toggle-btn" data-view="alternate" onclick="toggleView(this)">Alterner</button>
+                </div>
+            </div>
+
+            <div class="comparison-container" id="test4">
+                <div class="font-sample font-a" data-font="a">
+                    <div class="font-label">Police A</div>
+                    <p class="sample-text">
+                        La typographie joue un rôle fondamental dans la transmission de l'information.
+                        Au-delà de son aspect esthétique, elle influence directement la compréhension,
+                        la mémorisation et le confort de lecture. Les études montrent qu'une police
+                        bien choisie peut augmenter la vitesse de lecture de 20% et réduire les erreurs
+                        de compréhension de manière significative.
+                    </p>
+                    <p class="sample-text">
+                        Pour les personnes dyslexiques, certaines caractéristiques typographiques sont
+                        essentielles : un espacement généreux entre les lettres, des formes distinctes
+                        pour éviter les confusions (comme entre 'b' et 'd'), et une hauteur d'x
+                        importante pour améliorer la lisibilité. L'épaisseur régulière des traits et
+                        l'absence d'empattements complexes facilitent également le décodage.
+                    </p>
+                    <p class="sample-text">
+                        L'accessibilité numérique n'est pas qu'une obligation légale, c'est une
+                        nécessité éthique et pratique. En rendant nos contenus accessibles au plus
+                        grand nombre, nous créons une expérience inclusive qui bénéficie à tous les
+                        utilisateurs, qu'ils aient ou non des difficultés particulières.
+                    </p>
+                </div>
+
+                <div class="font-sample font-b" data-font="b">
+                    <div class="font-label">Police B</div>
+                    <p class="sample-text">
+                        La typographie joue un rôle fondamental dans la transmission de l'information.
+                        Au-delà de son aspect esthétique, elle influence directement la compréhension,
+                        la mémorisation et le confort de lecture. Les études montrent qu'une police
+                        bien choisie peut augmenter la vitesse de lecture de 20% et réduire les erreurs
+                        de compréhension de manière significative.
+                    </p>
+                    <p class="sample-text">
+                        Pour les personnes dyslexiques, certaines caractéristiques typographiques sont
+                        essentielles : un espacement généreux entre les lettres, des formes distinctes
+                        pour éviter les confusions (comme entre 'b' et 'd'), et une hauteur d'x
+                        importante pour améliorer la lisibilité. L'épaisseur régulière des traits et
+                        l'absence d'empattements complexes facilitent également le décodage.
+                    </p>
+                    <p class="sample-text">
+                        L'accessibilité numérique n'est pas qu'une obligation légale, c'est une
+                        nécessité éthique et pratique. En rendant nos contenus accessibles au plus
+                        grand nombre, nous créons une expérience inclusive qui bénéficie à tous les
+                        utilisateurs, qu'ils aient ou non des difficultés particulières.
+                    </p>
+                </div>
+
+                <div class="font-sample font-c" data-font="c">
+                    <div class="font-label">Police C</div>
+                    <p class="sample-text">
+                        La typographie joue un rôle fondamental dans la transmission de l'information.
+                        Au-delà de son aspect esthétique, elle influence directement la compréhension,
+                        la mémorisation et le confort de lecture. Les études montrent qu'une police
+                        bien choisie peut augmenter la vitesse de lecture de 20% et réduire les erreurs
+                        de compréhension de manière significative.
+                    </p>
+                    <p class="sample-text">
+                        Pour les personnes dyslexiques, certaines caractéristiques typographiques sont
+                        essentielles : un espacement généreux entre les lettres, des formes distinctes
+                        pour éviter les confusions (comme entre 'b' et 'd'), et une hauteur d'x
+                        importante pour améliorer la lisibilité. L'épaisseur régulière des traits et
+                        l'absence d'empattements complexes facilitent également le décodage.
+                    </p>
+                    <p class="sample-text">
+                        L'accessibilité numérique n'est pas qu'une obligation légale, c'est une
+                        nécessité éthique et pratique. En rendant nos contenus accessibles au plus
+                        grand nombre, nous créons une expérience inclusive qui bénéficie à tous les
+                        utilisateurs, qu'ils aient ou non des difficultés particulières.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section de feedback -->
+        <div class="feedback-section">
+            <h2>📝 Donnez votre avis</h2>
+            <p style="margin-bottom: 30px;">Après avoir testé les différents scénarios, partagez votre retour d'expérience.</p>
+
+            <!-- Option 1: Google Forms intégré (RECOMMANDÉ) -->
+            <!--
+            Pour créer votre formulaire Google Forms :
+            1. Allez sur https://forms.google.com
+            2. Créez un nouveau formulaire avec ces questions suggérées :
+                - Quelle police préférez-vous ? (Choix multiple : A / B / C / Équivalent)
+                - Pour la distinction des caractères similaires (Il1, O0, etc.) ? (A / B / C / Équivalent)
+                - Pour la lecture prolongée ? (A / B / C / Équivalent)
+                - Avez-vous des difficultés de lecture (dyslexie, etc.) ? (Oui / Non / Préfère ne pas dire)
+                - Commentaires additionnels (Texte libre)
+            3. Cliquez sur "Envoyer" > Icône "</>" pour obtenir le code d'intégration
+            4. Remplacez le commentaire ci-dessous par votre iframe
+            -->
+
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfP3OmUHnPHMrzzyX7F8uNgw_-Q0MK1mUbsduhBV041tJ5Wiw/viewform?embedded=true"
+                    width="100%"
+                    height="600"
+                    frameborder="0"
+                    marginheight="0"
+                    marginwidth="0"
+                    style="border: 1px solid #e0e0e0; border-radius: 8px;">
+                Chargement…
+            </iframe>
+
+            <!-- Révélation des polices (optionnel) -->
+            <details style="margin-top: 30px; padding: 20px; background: #f0f0f0; border-radius: 8px; border: 2px solid #ddd;">
+                <summary style="cursor: pointer; font-weight: bold; color: #333; font-size: 1.1em;">
+                    🔍 Révéler l'identité des polices (cliquez après avoir voté)
+                </summary>
+                <div style="margin-top: 20px; padding: 20px; background: white; border-radius: 5px;">
+                    <h3 style="color: #2196F3; margin-bottom: 15px;">Les polices testées étaient :</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 10px 0; border-bottom: 1px solid #eee;">
+                            <strong style="color: #333;">Police A :</strong>
+                            <span style="color: #666;">Atkinson Hyperlegible - Conçue par le Braille Institute, optimisée pour la lisibilité maximale et l'accessibilité</span>
+                        </li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid #eee;">
+                            <strong style="color: #333;">Police B :</strong>
+                            <span style="color: #666;">Nikkei Journal PP - Police premium avec une esthétique éditoriale moderne</span>
+                        </li>
+                        <li style="padding: 10px 0;">
+                            <strong style="color: #333;">Police C :</strong>
+                            <span style="color: #666;">Figtree - Police Google Fonts moderne, gratuite et polyvalente</span>
+                        </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </div>
+
+    <script>
+        // Gestion du toggle entre comparaison et alternance
+        let currentView = 'compare';
+        let currentFont = 'a';
+
+        function toggleView(button) {
+            const section = button.closest('.test-section');
+            const container = section.querySelector('.comparison-container');
+            const viewType = button.dataset.view;
+
+            // Reset tous les boutons de cette section
+            section.querySelectorAll('.toggle-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+
+            if (viewType === 'compare') {
+                container.classList.remove('single-view');
+                container.querySelectorAll('.font-sample').forEach(sample => {
+                    sample.classList.remove('active-font');
+                });
+            } else {
+                container.classList.add('single-view');
+                startAlternating(container);
+            }
+        }
+
+        function startAlternating(container) {
+            const samples = container.querySelectorAll('.font-sample');
+            let currentIndex = 0;
+
+            // Stocker l'intervalle dans l'attribut data pour pouvoir le nettoyer plus tard
+            if (container.dataset.intervalId) {
+                clearInterval(parseInt(container.dataset.intervalId));
+            }
+
+            function showNext() {
+                samples.forEach(sample => {
+                    sample.classList.remove('active-font');
+                });
+                samples[currentIndex].classList.add('active-font');
+
+                // Ajouter un indicateur de progression
+                const section = container.closest('.test-section');
+                const buttons = section.querySelectorAll('.toggle-btn[data-view="alternate"]');
+                buttons.forEach(btn => {
+                    const labels = ['A', 'B', 'C'];
+                    btn.textContent = `Alterner (${labels[currentIndex]})`;
+                });
+
+                currentIndex = (currentIndex + 1) % samples.length;
+            }
+
+            showNext();
+            // Change toutes les 5 secondes
+            const interval = setInterval(() => {
+                if (!container.classList.contains('single-view')) {
+                    clearInterval(interval);
+                    return;
+                }
+                showNext();
+            }, 5000);
+
+            // Stocker l'ID de l'intervalle
+            container.dataset.intervalId = interval.toString();
+        }
+
+        // Gestion des votes
+        function vote(choice) {
+            let votes = JSON.parse(localStorage.getItem('fontVotes') || '{"a": 0, "b": 0, "c": 0, "equal": 0}');
+            votes[choice] = (votes[choice] || 0) + 1;
+            localStorage.setItem('fontVotes', JSON.stringify(votes));
+
+            updateCounter();
+
+            // Feedback visuel
+            alert('Merci pour votre vote ! Votre préférence a été enregistrée.');
+        }
+
+        function updateCounter() {
+            const votes = JSON.parse(localStorage.getItem('fontVotes') || '{"a": 0, "b": 0, "c": 0, "equal": 0}');
+            document.getElementById('countA').textContent = votes.a || 0;
+            document.getElementById('countB').textContent = votes.b || 0;
+            document.getElementById('countC').textContent = votes.c || 0;
+            document.getElementById('counter').classList.add('show');
+        }
+
+        // Initialiser les boutons de comparaison par défaut
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.toggle-btn[data-view="compare"]').forEach(btn => {
+                btn.classList.add('active');
+            });
+
+            // Afficher le compteur si des votes existent
+            const votes = JSON.parse(localStorage.getItem('fontVotes') || '{"a": 0, "b": 0, "c": 0, "equal": 0}');
+            if (votes.a > 0 || votes.b > 0 || votes.c > 0 || votes.equal > 0) {
+                updateCounter();
+            }
+        });
+
+        // Fonction pour réinitialiser les votes (utile pour les tests)
+        function resetVotes() {
+            if (confirm('Êtes-vous sûr de vouloir réinitialiser tous les votes ?')) {
+                localStorage.removeItem('fontVotes');
+                document.getElementById('countA').textContent = '0';
+                document.getElementById('countB').textContent = '0';
+                document.getElementById('countC').textContent = '0';
+                document.getElementById('counter').classList.remove('show');
+            }
+        }
+
+        // Ajouter un raccourci clavier pour réinitialiser (Ctrl+Shift+R)
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'R') {
+                e.preventDefault();
+                resetVotes();
+            }
+        });
+    </script>
+</body>
+</html>
